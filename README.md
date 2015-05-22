@@ -19,7 +19,7 @@ __________________________________________________________
   - Móvil
   - DNI
   - Nombre
-- - Reserva
+  - Reserva
   - Sin especificar, Foreing Keys??
 - Saldo   Para simular la plataforma de pago
 
@@ -52,7 +52,7 @@ __________________________________________________________
 - controlar la ocupacion de las mesas
 - una misma persona puede reservar en distintos horarios el mismo dia
 - registro obligatorio para realizar reservas
-- cliente logeado puede: crear reserva, consultar reservas, anular reservas
+- - cliente logeado puede: crear reserva, consultar reservas, anular reservas
 
 - *** opcional: localizacion en google maps
 
