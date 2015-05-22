@@ -37,27 +37,17 @@ Especificaciones y restricciones de la aplicación
 //////// PROYECTO RESTAURANTE ANDROID - DSIWEB ///////////
 //////////////////////////////////////////////////////////
 
+Client: Adndroid UI
 
-ESPECIFICACIONES TECNICAS:
--------------------------
+Server: Web Service
 
-- UI Adndroid:
-
-
-- Web Service:
-
-
-TABLAS:
-
+Data Base
 -resevas (anuladas, pasadas, activas, )
-
 -clientes (email, password, edad, nombre, dni, telefono movil)
-
 -restaurantes (nombre, longitud, latitud, num mesas-4plazas-)
-
 -saldo (dni, cantidad)
 
-
+ESPECIFICACIONES TECNICAS:
 pantalla reserva: restaurante, fecha, num de personas
 se puede reservar cualquier dia de la semana
 4 horarios de posibles reservas 9,00 - 9,15 - 9,30 - 10,00
