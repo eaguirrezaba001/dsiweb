@@ -48,20 +48,14 @@ Data Base
 -saldo (dni, cantidad)
 
 ESPECIFICACIONES TECNICAS:
-pantalla reserva: restaurante, fecha, num de personas
-se puede reservar cualquier dia de la semana
-4 horarios de posibles reservas 9,00 - 9,15 - 9,30 - 10,00
-controlar la ocupacion de las mesas
-una misma persona puede reservar en distintos horarios el mismo dia
-registro obligatorio para realizar reservas
+.pantalla reserva: restaurante, fecha, num de personas
+.se puede reservar cualquier dia de la semana
+.4 horarios de posibles reservas 9,00 - 9,15 - 9,30 - 10,00
+.controlar la ocupacion de las mesas
+.una misma persona puede reservar en distintos horarios el mismo dia
+.registro obligatorio para realizar reservas
+.cliente logeado puede: crear reserva, consultar reservas, anular reservas
 
-
-cliente logeado puede:
-crear reserva
-consultar reservas
-anular reservas
-
-
-opcional: localizacion en google maps
+.opcional: localizacion en google maps
 
 
