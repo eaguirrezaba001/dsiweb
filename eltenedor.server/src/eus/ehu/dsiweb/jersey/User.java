@@ -10,6 +10,7 @@ import javax.ws.rs.core.MediaType;
 
 import eus.ehu.dsiweb.DBConnection;
 import eus.ehu.dsiweb.Utitlity;
+import eus.ehu.dsiweb.entity.DBUser;
 
 //Path: http://localhost/<appln-folder-name>/user
 @Path("/user")
@@ -22,13 +23,24 @@ public class User {
 	// Produces JSON as response
 	@Produces(MediaType.APPLICATION_JSON) 
 	// Query parameters are parameters: http://localhost/<appln-folder-name>/user/dologin?username=abc&password=xyz
-	public String doLogin(@QueryParam("username") String uname, @QueryParam("password") String pwd){
+	public String doLogin(@QueryParam("username") String username, @QueryParam("password") String password){
 		String response = "";
-		if(checkCredentials(uname, pwd)){
-			response = Utitlity.constructJSON("login",true);
-		}else{
-			response = Utitlity.constructJSON("login", false, "Incorrect Email or Password");
+		
+		if(Utitlity.isNotNull(username) && Utitlity.isNotNull(password)){
+			try {
+				DBUser user = DBConnection.getUserInfo(username, password);
+				response = Utitlity.constructJSON(user);
+			} catch (Exception e) {
+				response = "";
+			}
 		}
+//		if(checkCredentials(username, password)){
+//			response = Utitlity.constructJSON("login",true);
+//			
+//			
+//		}else{
+//			response = Utitlity.constructJSON("login", false, "Incorrect Email or Password");
+//		}
 		return response;
 	}
 	

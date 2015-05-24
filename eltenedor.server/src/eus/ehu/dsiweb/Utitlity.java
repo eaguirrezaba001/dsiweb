@@ -8,6 +8,7 @@ import org.codehaus.jettison.json.JSONObject;
 
 import eus.ehu.dsiweb.entity.DBReservation;
 import eus.ehu.dsiweb.entity.DBRestaurant;
+import eus.ehu.dsiweb.entity.DBUser;
 
 public class Utitlity {
 	
@@ -32,6 +33,19 @@ public class Utitlity {
 			obj.put("tag", tag);
 			obj.put("status", new Boolean(status));
 			obj.put("error_msg", err_msg);
+		} catch (JSONException e) {
+			
+		}
+		return obj.toString();
+	}
+	
+	public static String constructJSON(DBUser user) {
+		JSONObject obj = new JSONObject();
+		try {
+			obj.put("id",user.getId());
+			obj.put("name", user.getName());
+			obj.put("login", user.getLogin());
+			obj.put("email", user.getEmail());
 		} catch (JSONException e) {
 			
 		}

@@ -11,6 +11,7 @@ import java.util.List;
 
 import eus.ehu.dsiweb.entity.DBReservation;
 import eus.ehu.dsiweb.entity.DBRestaurant;
+import eus.ehu.dsiweb.entity.DBUser;
 
 public class DBConnection {
 	
@@ -35,16 +36,16 @@ public class DBConnection {
 	// USUARIO
 	//////////////////////////////
 	
-	public static boolean checkLogin(String uname, String pwd) throws Exception {
+	public static boolean checkLogin(String username, String password) throws Exception {
 		boolean isUserAvailable = false;
 		Connection conn = null;
 		try {
 			conn = DBConnection.createConnection();
 			
 			Statement stmt = conn.createStatement();
-			String query = "SELECT * FROM user "
-					+ " WHERE login = '" + uname
-					+ "' AND password=" + "'" + pwd + "'";
+			String query = "SELECT * FROM user ";
+					query += " WHERE (login = '" + username + "' OR email = '" + username +"')";
+					query += " AND password=" + "'" + password + "'";
 			ResultSet rs = stmt.executeQuery(query);
 			while (rs.next()) {
 				isUserAvailable = true;
@@ -62,6 +63,79 @@ public class DBConnection {
 			}
 		}
 		return isUserAvailable;
+	}
+	
+	public static DBUser getUserInfo(String username, String password) throws Exception {
+		List<DBUser> list = null;
+		Connection conn = null;
+		try {
+			conn = DBConnection.createConnection();
+			
+			Statement stmt = conn.createStatement();
+			String query = "SELECT * FROM user ";
+				query += " WHERE (login = '" + username + "' OR email = '" + username +"')";
+				query += " AND password=" + "'" + password + "'";
+			ResultSet rs = stmt.executeQuery(query);
+			
+			list = new LinkedList<DBUser>();
+			while(rs.next()){
+				DBUser user = new DBUser();
+				user.setId(rs.getInt("id"));
+				user.setName(rs.getString("name"));
+				user.setLogin(rs.getString("login"));
+				user.setEmail(rs.getString("email"));
+				list.add(user);
+			}
+			
+		} catch (SQLException sqle) {
+			throw sqle;
+		} catch (Exception e) {
+			if (conn != null) {
+				conn.close();
+			}
+			throw e;
+		} finally {
+			if (conn != null) {
+				conn.close();
+			}
+		}
+		return list.get(0);
+	}
+	
+	public static DBUser getUserInfo(Integer id) throws SQLException, Exception {
+		List<DBUser> list = null;
+		Connection conn = null;
+		try {
+			conn = DBConnection.createConnection();
+			
+			Statement stmt = conn.createStatement();
+			String query = "SELECT * FROM user ";
+					query += " WHERE  id = " + id;
+			ResultSet rs = stmt.executeQuery(query);
+			
+			list = new LinkedList<DBUser>();
+			while(rs.next()){
+				DBUser user = new DBUser();
+				user.setId(rs.getInt("id"));
+				user.setName(rs.getString("name"));
+				user.setLogin(rs.getString("login"));
+				user.setEmail(rs.getString("email"));
+				list.add(user);
+			}
+			
+		} catch (SQLException sqle) {
+			throw sqle;
+		} catch (Exception e) {
+			if (conn != null) {
+				conn.close();
+			}
+			throw e;
+		} finally {
+			if (conn != null) {
+				conn.close();
+			}
+		}
+		return list.get(0);
 	}
 
 	public static boolean insertUser(String name, String document, String login, String password, String email, String phone) throws SQLException, Exception {
