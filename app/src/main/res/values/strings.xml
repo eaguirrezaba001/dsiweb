@@ -1,0 +1,44 @@
+<resources>
+    <string name="app_name">RestauranteEkain</string>
+    <string name="title_activity_registration">Nuevo usuario</string>
+
+    <string name="hello_world">Hola mundo!</string>
+    <string name="action_settings">Configuración</string>
+
+    <string name="fragment_main">Inicio</string>
+    <string name="fragment_config">Configuración</string>
+
+
+    <string name="drawer_open">Menú Abierto</string>
+    <string name="drawer_close">Menú Cerrado</string>
+
+    <string name="full_name">Nombre y apellidos</string>
+    <string name="user_name">Correo electrónico (usuario)</string>
+    <string name="password">Contraseña</string>
+    <string name="birth_date">Fecha de nacimiento</string>
+    <string name="document">DNI</string>
+    <string name="name">Nombre</string>
+    <string name="date">Fecha</string>
+    <string name="phone">Teléfono</string>
+    <string name="email">Email</string>
+
+    <string name="accept">Aceptar</string>
+
+    <string name="facebook_app_id">723299824459167</string>
+
+    <string name="login_with">Iniciar sesión con</string>
+    <string name="facebook">Facebook</string>
+    <string name="twitter">Twitter</string>
+    <string name="google">Google</string>
+
+    <string name="login_user_name">Usuario</string>
+    <string name="login_user_password">Contraseña</string>
+    <string name="login">Iniciar sesión</string>
+    <string name="logout">Cerrar sesión</string>
+    <string name="user_new">Nuevo usuario</string>
+
+
+    <string name="restaurants">Restaurantes</string>
+
+
+</resources>

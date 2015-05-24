@@ -1,0 +1,23 @@
+<resources>
+
+    <string name="app_name">ElTenedor - Ekain</string>
+    <string name="title_activity_registration">Erregistroa</string>
+
+    <string name="hello_world">Kaixo Mundua!</string>
+    <string name="action_settings">Konfigurazioa</string>
+
+    <string name="fragment_main">Hasiera</string>
+    <string name="fragment_config">Konfigurazioa</string>
+
+
+    <string name="drawer_open">Menú Abierto</string>
+    <string name="drawer_close">Menú Cerrado</string>
+
+
+    <string name="name">Izena</string>
+    <string name="date">Data</string>
+    <string name="phone">Telefonoa</string>
+
+    <string name="accept">Adoz</string>
+
+</resources>
