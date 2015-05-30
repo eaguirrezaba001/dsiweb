@@ -9,7 +9,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import eus.ehu.dsiweb.DBConnection;
-import eus.ehu.dsiweb.Utitlity;
+import eus.ehu.dsiweb.Utility;
 import eus.ehu.dsiweb.entity.DBUser;
 
 //Path: http://localhost/<appln-folder-name>/user
@@ -26,10 +26,10 @@ public class User {
 	public String doLogin(@QueryParam("username") String username, @QueryParam("password") String password){
 		String response = "";
 		
-		if(Utitlity.isNotNull(username) && Utitlity.isNotNull(password)){
+		if(Utility.isNotNull(username) && Utility.isNotNull(password)){
 			try {
 				DBUser user = DBConnection.getUserInfo(username, password);
-				response = Utitlity.constructJSON(user);
+				response = Utility.constructJSON(user);
 			} catch (Exception e) {
 				response = "";
 			}
@@ -56,13 +56,13 @@ public class User {
 		String response = "";
 		RegistrationStatus status = registerUser(name, document, login, password, email, phone);
 		if (status == RegistrationStatus.CREATED) {
-			response = Utitlity.constructJSON("register", true);
+			response = Utility.constructJSON("register", true);
 		} else if (status == RegistrationStatus.REGISTERED) {
-			response = Utitlity.constructJSON("register", false, "You are already registered");
+			response = Utility.constructJSON("register", false, "You are already registered");
 		} else if (status == RegistrationStatus.WRONG_CHARACTER) {
-			response = Utitlity.constructJSON("register", false, "Special Characters are not allowed in Username and Password");
+			response = Utility.constructJSON("register", false, "Special Characters are not allowed in Username and Password");
 		} else if (status == RegistrationStatus.ERROR) {
-			response = Utitlity.constructJSON("register", false, "Error occured");
+			response = Utility.constructJSON("register", false, "Error occured");
 		}
 		return response;
 	}
@@ -78,7 +78,7 @@ public class User {
 	 */
 	private RegistrationStatus registerUser(String name, String document, String login, String password, String email, String phone) {
 		RegistrationStatus result = null;
-		if(Utitlity.isNotNull(login) && Utitlity.isNotNull(password)){
+		if(Utility.isNotNull(login) && Utility.isNotNull(password)){
 			try {
 				if(DBConnection.insertUser(name, document, login, password, email, phone)){
 					result = RegistrationStatus.CREATED;
@@ -109,7 +109,7 @@ public class User {
 	 */
 	private boolean checkCredentials(String username, String password){
 		boolean result = false;
-		if(Utitlity.isNotNull(username) && Utitlity.isNotNull(password)){
+		if(Utility.isNotNull(username) && Utility.isNotNull(password)){
 			try {
 				result = DBConnection.checkLogin(username, password);
 			} catch (Exception e) {
@@ -127,6 +127,11 @@ public class User {
 		REGISTERED,
 		WRONG_CHARACTER,
 		ERROR;
+	}
+	
+	public enum ReservationStatus {
+		ACTIVE,
+		CANCELED;
 	}
 	
 }

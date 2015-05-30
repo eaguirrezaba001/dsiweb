@@ -285,9 +285,9 @@ public class DBConnection {
 				res.setId(rs.getInt("id"));
 				res.setRestaurant(rs.getInt("restaurant"));
 				res.setUser(rs.getInt("user"));
-				res.setDate(rs.getDate("date"));
+				res.setDate(rs.getTimestamp("date"));
 				res.setStatus(rs.getInt("status"));
-				res.setCreationDate(rs.getDate("creation_date"));
+				res.setCreationDate(rs.getTimestamp("creation_date"));
 				res.setPersonCount(rs.getInt("person_count"));
 				list.add(res);
 			}
@@ -307,15 +307,15 @@ public class DBConnection {
 		return list;
 	}
 	
-	public static boolean insertReserva(int restaurant, int user, Date date) throws SQLException, Exception {
+	public static boolean insertReserva(int restaurant, int user, Date date, int personCount) throws SQLException, Exception {
 		boolean insertStatus = false;
 		Connection conn = null;
 		try {
 			conn = DBConnection.createConnection();
 			
 			Statement stmt = conn.createStatement();
-			String query = "INSERT into reservation(restaurant, user, date, status, creation_date) "
-					+ " values(" + restaurant + "," + user + "," + new java.sql.Date(date.getTime()) + ",0, "+new java.sql.Date((new Date()).getTime())+")";
+			String query = "INSERT into reservation(restaurant, user, date, status, creation_date, person_count) "
+					+ " values(" + restaurant + "," + user + ",'" + new java.sql.Timestamp(date.getTime()) + "',0,'"+new java.sql.Timestamp((new Date()).getTime())+"', "+personCount+")";
 			
 			int records = stmt.executeUpdate(query);
 			
@@ -336,5 +336,35 @@ public class DBConnection {
 		}
 		return insertStatus;
 	}
-	
+
+	public static boolean removeReserva(int reservation) throws SQLException, Exception {
+		boolean insertStatus = false;
+		Connection conn = null;
+		try {
+			conn = DBConnection.createConnection();
+			
+			Statement stmt = conn.createStatement();
+			String query = "DELETE from reservation "
+					+ " WHERE id = " + reservation;
+			
+			int records = stmt.executeUpdate(query);
+			
+			if (records > 0) {
+				insertStatus = true;
+			}
+		} catch (SQLException sqle) {
+			throw sqle;
+		} catch (Exception e) {
+			if (conn != null) {
+				conn.close();
+			}
+			throw e;
+		} finally {
+			if (conn != null) {
+				conn.close();
+			}
+		}
+		return insertStatus;
+	}
+
 }
