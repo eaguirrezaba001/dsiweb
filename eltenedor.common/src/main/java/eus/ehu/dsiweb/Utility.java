@@ -26,7 +26,7 @@ public class Utility {
 			obj.put("tag", tag);
 			obj.put("status", new Boolean(status));
 		} catch (JSONException e) {
-			 
+			e.printStackTrace();
 		}
 		return obj.toString();
 	}
@@ -37,7 +37,7 @@ public class Utility {
 			obj.put(IEntityConstants.STATUS, new Boolean(status));
 			obj.put(IEntityConstants.ERROR_MSG, err_msg);
 		} catch (JSONException e) {
-			
+			e.printStackTrace();
 		}
 		return obj.toString();
 	}
@@ -47,7 +47,7 @@ public class Utility {
 		try {
 			obj.put(IEntityConstants.AMOUNT,amount);
 		} catch (JSONException e) {
-			
+			e.printStackTrace();
 		}
 		return obj.toString();
 	}
@@ -62,7 +62,7 @@ public class Utility {
 			obj.put(IEntityConstants.EMAIL, user.getEmail());
 			obj.put(IEntityConstants.AMOUNT, user.getCredit());
 		} catch (JSONException e) {
-			
+			e.printStackTrace();
 		}
 		return obj.toString();
 	}
@@ -79,7 +79,7 @@ public class Utility {
 			String encodedString = org.apache.commons.codec.binary.Base64.encodeBase64String(restaurant.getLogoImage());
 			obj.put(IEntityConstants.LOGO_IMAGE, encodedString!=null?encodedString:"");
 		} catch (JSONException e) {
-			
+			e.printStackTrace();
 		}
 		return obj;
 	}
@@ -98,7 +98,7 @@ public class Utility {
 			}
 			obj.put(IEntityConstants.RESTAURANT_LIST, objList);
 		} catch (JSONException e) {
-			
+			e.printStackTrace();
 		}
 		return obj.toString();
 	}
@@ -115,7 +115,7 @@ public class Utility {
 			obj.put(IEntityConstants.CREATION_DATE,reservation.getCreationDate());
 			obj.put(IEntityConstants.PERSON_COUNT,reservation.getPersonCount());
 		} catch (JSONException e) {
-			
+			e.printStackTrace();
 		}
 		return obj;
 	}
@@ -134,7 +134,7 @@ public class Utility {
 			}
 			obj.put(IEntityConstants.RESERVATION_LIST, objList);
 		} catch (JSONException e) {
-			
+			e.printStackTrace();
 		}
 		return obj.toString();
 	}
@@ -163,7 +163,7 @@ public class Utility {
 			obj.put(IEntityConstants.STATUS, status);
 			
 		} catch (JSONException e) {
-			
+			e.printStackTrace();
 		}
 		return obj.toString();
 	}

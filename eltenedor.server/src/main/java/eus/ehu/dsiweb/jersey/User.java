@@ -25,22 +25,16 @@ public class User {
 	// Query parameters are parameters: http://localhost/<appln-folder-name>/user/dologin?username=abc&password=xyz
 	public String doLogin(@QueryParam("username") String username, @QueryParam("password") String password){
 		String response = "";
-		
 		if(Utility.isNotNull(username) && Utility.isNotNull(password)){
+			DBUser user;
 			try {
-				DBUser user = DBConnection.getUserInfo(username, password);
-				response = Utility.constructJSON(user);
+				user = DBConnection.getUserInfo(username, password);
 			} catch (Exception e) {
-				response = "";
+				user = new DBUser();
+				user.setId(0);
 			}
+			response = Utility.constructJSON(user);
 		}
-//		if(checkCredentials(username, password)){
-//			response = Utitlity.constructJSON("login",true);
-//			
-//			
-//		}else{
-//			response = Utitlity.constructJSON("login", false, "Incorrect Email or Password");
-//		}
 		return response;
 	}
 	

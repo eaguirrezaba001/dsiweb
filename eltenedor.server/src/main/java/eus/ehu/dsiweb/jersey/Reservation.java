@@ -2,6 +2,7 @@ package eus.ehu.dsiweb.jersey;
 
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -181,7 +182,20 @@ public class Reservation {
 	        Boolean successful = DBConnection.cancelReserva(obj.getInt(IEntityConstants.ID));
 	        if(successful!=null){
 	        	if(successful){
-	        		DBConnection.increaseUserCredit(obj.getInt(IEntityConstants.USER), 10);
+	        		SimpleDateFormat sdf = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.US);
+	        		Date _reservationDate = sdf.parse(obj.getString(IEntityConstants.DATE));
+	        		
+	        		Calendar reservationDate = Calendar.getInstance();
+	        		reservationDate.setTime(_reservationDate);
+	        		reservationDate.add(Calendar.DAY_OF_MONTH, -1);
+	        		
+	        		if((new Date()).before(reservationDate.getTime())){
+	        			DBConnection.increaseUserCredit(obj.getInt(IEntityConstants.USER), 10);
+	        			return Utility.constructJSON(successful, "Se ha integrado la totalidad del importe");
+	        		} else {
+	        			DBConnection.increaseUserCredit(obj.getInt(IEntityConstants.USER), 5);
+	        			return Utility.constructJSON(successful, "Se ha reintegrado el importe con una penalizacion del 50%");
+	        		}
 	        	}
 				return Utility.constructJSON(successful);
 			}
