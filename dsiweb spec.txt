@@ -1,0 +1,41 @@
+//////////////////////////////////////////////////////////
+//////// PROYECTO RESTAURANTE ANDROID - DSIWEB ///////////
+//////////////////////////////////////////////////////////
+
+
+ESPECIFICACIONES TECNICAS:
+-------------------------
+
+- UI Adndroid:
+
+
+- Web Service:
+
+
+TABLAS:
+
+-resevas (anuladas, pasadas, activas, )
+
+-clientes (email, password, edad, nombre, dni, telefono movil)
+
+-restaurantes (nombre, longitud, latitud, num mesas-4plazas-)
+
+-saldo (dni, cantidad)
+
+
+pantalla reserva: restaurante, fecha, num de personas
+se puede reservar cualquier dia de la semana
+4 horarios de posibles reservas 9,00 - 9,15 - 9,30 - 10,00
+controlar la ocupacion de las mesas
+una misma persona puede reservar en distintos horarios el mismo dia
+registro obligatorio para realizar reservas
+
+
+cliente logeado puede:
+crear reserva
+consultar reservas
+anular reservas
+
+
+opcional: localizacion en google maps
+
