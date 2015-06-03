@@ -505,7 +505,8 @@ public class DBConnection {
 			String query = "SELECT sum(resv.person_count), (rest.table_count)*4 ";
 				query += " FROM restaurant as rest left join reservation as resv ";
 				query += " ON rest.id = resv.restaurant";
-				query += " WHERE restaurant = "+restaurant;
+				query += " WHERE rest.id = "+restaurant;
+				query += " AND resv.status = 0";
 				query += " AND date between '"+new java.sql.Timestamp(start.getTime().getTime())+"' AND '"+new java.sql.Timestamp(end.getTime().getTime())+"'";
 				
 			ResultSet rs = stmt.executeQuery(query);
