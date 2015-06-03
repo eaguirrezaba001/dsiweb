@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:textAlignment="center"
+        android:padding="5dip" >
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dip"
+            android:text="@string/reservation_new"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"/>
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dip"
+            android:textStyle="bold|italic"
+            android:text="@string/restaurant_select" />
+        <TextView
+            android:id="@+id/TxtSelectedRestaurant"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" />
+        <Spinner
+            android:id="@+id/SpnRestaurants"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dip"
+            android:textStyle="bold|italic"
+            android:text="@string/reservation_date" />
+        <Button
+            android:id="@+id/BtnReservationDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dip"
+            android:textStyle="bold|italic"
+            android:text="@string/reservation_hour" />
+        <Spinner
+            android:id="@+id/SpnReservationTime"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dip"
+            android:textStyle="bold|italic"
+            android:text="@string/reservation_person_count" />
+        <Spinner
+            android:id="@+id/SpnPersonCount"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" />
+
+        <!-- Error message -->
+        <TextView
+            android:id="@+id/TxtReservationError"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="10dip"
+            android:textColor="#e30000"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"/>
+
+        <TextView
+            android:id="@+id/TxtReservationPrice"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dip"
+            android:textStyle="bold|italic" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"/>
+
+        <Button
+            android:id="@+id/BtnSaveReservation"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dip"
+            android:background="#228b22"
+            android:textColor="#fff"
+            android:onClick="saveReservation"
+            android:text="@string/accept" />
+
+        <Button
+            android:id="@+id/BtnCancelReservationList"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dip"
+            android:onClick="restoreMainFragment"
+            android:text="@string/back"
+            android:textColor="#228b22"
+            android:textStyle="bold"
+            android:background="@drawable/back_button"/>
+    </LinearLayout>
+
+</ScrollView>

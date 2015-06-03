@@ -1,23 +1,85 @@
 <resources>
-
     <string name="app_name">ElTenedor - Ekain</string>
-    <string name="title_activity_registration">Erregistroa</string>
 
-    <string name="hello_world">Kaixo Mundua!</string>
     <string name="action_settings">Konfigurazioa</string>
-
     <string name="fragment_main">Hasiera</string>
     <string name="fragment_config">Konfigurazioa</string>
-
-
-    <string name="drawer_open">Menú Abierto</string>
-    <string name="drawer_close">Menú Cerrado</string>
-
-
-    <string name="name">Izena</string>
+    <string name="drawer_open">Menu irekia</string>
+    <string name="drawer_close">Menu itxia</string>
+    <string name="accept">Ados</string>
+    <string name="cancel">Ezeztatu</string>
+    <string name="back">Atzera</string>
+    <string name="remove">Ezabatu</string>
+    <string name="update">Eguneratu</string>
+    <string name="save">Gorde</string>
+    <string name="yes">Bai</string>
+    <string name="no">Ez</string>
     <string name="date">Data</string>
-    <string name="phone">Telefonoa</string>
+    <string name="loading">Kargatzen...</string>
+    <string name="exit_yes_no">Ziur zaude atera nahi duzula?</string>
 
-    <string name="accept">Adoz</string>
+    <!-- AUTORIZACION Y AUTENTICACION -->
+    <string name="login_with">Saioa hasi</string>
+    <string name="facebook">Facebook</string>
+    <string name="twitter">Twitter</string>
+    <string name="google">Google</string>
+    <string name="login_user_name">Erabiltzailea</string>
+    <string name="login_user_password">Pasahitza</string>
+    <string name="login">Saioa hasi</string>
+    <string name="logout">Saioa itxi</string>
+    <string name="user_new">Erabiltzaile berria</string>
+    <string name="user_logout_done">Saioa itxita!</string>
+
+    <!-- USUARIOS -->
+    <string name="title_activity_registration">Erabiltzaile berria</string>
+    <string name="user_full_name">Izen abizenak</string>
+    <string name="user_login">Erabiltzaile izena</string>
+    <string name="user_password">Pasahitza</string>
+    <string name="user_password_repeat">Pasahitza errepikatu</string>
+    <string name="user_birth_date">Jaiotze data</string>
+    <string name="user_document">DNI</string>
+    <string name="user_phone">Telefono zenbakia</string>
+    <string name="user_email">Pozta elektronikoa</string>
+    <string name="user_credit">Kreditua</string>
+    <string name="user_successful_registration">Erregistroa eginda!</string>
+    <string name="user_successful_login">Saioa hasita!</string>
+
+    <!-- RSTAURANTES -->
+    <string name="restaurants">Jatetxeak</string>
+    <string name="restaurant">Jatetxea</string>
+    <string name="restaurant_select">Jatetxea aukeratu</string>
+    <string name="restaurant_detail_info">Xehetasunak</string>
+
+    <!-- RESERVAS -->
+    <string name="title_activity_reservation_list">Erreserba zerrenda</string>
+    <string name="title_activity_reservation">Erreserba</string>
+    <string name="reservation_new">Erreserba berria</string>
+    <string name="reservation_do">Erreserba agindu</string>
+    <string name="reservation_selected_restaurant">Aukeratutako jatetxea</string>
+    <string name="reservation_date">Erreserba data</string>
+    <string name="reservation_hour">Erreserbaren ordua</string>
+    <string name="reservation_person_count">Pertsona kopurua</string>
+    <string name="reservation_list_user">Nire erreserbak</string>
+    <string name="reservation_table_for">Zenbatentzako</string>
+    <string name="reservation_list_empty">Momentuz ez daukazu erreserbarik</string>
+    <string name="reservation_price">Erreserba bakoitzeko prezioa 10 unitatekoa da eta erabilgarri dauzkazu</string>
+    <string name="reservation_created_successful">Erreserba sortuta</string>
+    <string name="reservation_cancel_question">Erreserba ezeztatu?</string>
+    <string name="reservation_canceled">Erreserba ezeztatua!</string>
+
+    <!-- ERRORES -->
+    <string name="error_response_invalid">Arazoa agertu da [Server\'s JSON response might be invalid]!</string>
+    <string name="error_request_not_found">Eskatutako errekurtsoa ez da aurkitu</string>
+    <string name="error_server_end">Zerbait gaizki dabil serbidorean</string>
+    <string name="error_server_down">Arazo ustekabekoa gertatu da! [Most common Error: Device might not be connected to Internet or remote server is not up and running]</string>
+
+    <string name="error_registration_password_incorrect">Pasahitzak ez dira bat etortzen</string>
+    <string name="error_registration_enter_valid_email">Idatzi helbide zuzena, mesedez</string>
+    <string name="error_registration_complete_all_field">Bete ezazu eskatutako guztia, mesedez</string>
+    <string name="error_reservation_user_credit">Ezin izan da lortu erabiltzaileak eskuragarri daukan kreditua</string>
+    <string name="error_reservation_when_cancel">Arazoa sortu da erreserba ezeztatzerakoan</string>
+
+    <string name="error_login_field_blank">Bete ezazu eskatutako guztia, mesedez</string>
+    <string name="error_login_incorrect">Erabiltzaile izena edo pasahitza okerrak</string>
 
 </resources>

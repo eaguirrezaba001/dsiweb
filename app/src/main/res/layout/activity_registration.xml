@@ -18,54 +18,91 @@
             android:text="@string/user_new"
             android:textSize="25sp"
             android:textStyle="bold" />
-        <!-- Name Label -->
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"/>
 
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="@string/name" />
-        <!-- Name TextField -->
-
+            android:text="@string/user_full_name" />
         <EditText
-            android:id="@+id/registerName"
+            android:id="@+id/TxtRegisterName"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content" android:hint="Enter your Name"/>
-
-        <!-- Email Label -->
+            android:layout_height="wrap_content"
+            android:hint="Enter your Name"/>
 
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="@string/email" />
-        <!-- Email TextField -->
-
+            android:text="@string/user_document" />
         <EditText
-            android:id="@+id/registerEmail"
+            android:id="@+id/TxtRegisterDocument"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter your Document"/>
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/user_phone" />
+        <EditText
+            android:id="@+id/TxtRegisterPhone"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter your Phone"
+            android:inputType="text|phone"/>
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/user_email" />
+        <EditText
+            android:id="@+id/TxtRegisterEmail"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:hint="Enter your Email ID"
             android:inputType="textEmailAddress" />
 
-        <!-- Password Label -->
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/user_login" />
+        <EditText
+            android:id="@+id/TxtRegisterLogin"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter your username" />
 
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dip"
-            android:text="@string/password" />
-        <!-- Password TextField -->
-
+            android:text="@string/user_password" />
         <EditText
-            android:id="@+id/registerPassword"
+            android:id="@+id/TxtRegisterPassword"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:hint="Enter Password"
             android:inputType="textPassword" />
 
-        <!-- Error message -->
-
         <TextView
-            android:id="@+id/register_error"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dip"
+            android:text="@string/user_password_repeat" />
+        <EditText
+            android:id="@+id/TxtRegisterPasswordRepeat"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="ReEnter Password"
+            android:inputType="textPassword" />
+
+        <!-- Error message -->
+        <TextView
+            android:id="@+id/TxtRegisterError"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -74,110 +111,26 @@
             android:textStyle="bold" />
 
         <Button
-            android:id="@+id/btnRegister"
+            android:id="@+id/BtnRegister"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="75dp"
             android:layout_marginTop="20dip"
-            android:background="#ff6347"
+            android:background="#228b22"
+            android:textColor="#fff"
+            android:textStyle="bold"
             android:onClick="registerUser"
-            android:text="@string/accept"
-            android:textColor="#fff" />
-
-        <!-- Link to Login Screen -->
+            android:text="@string/accept"/>
 
         <Button
-            android:id="@+id/btnLinkToLoginScreen"
+            android:id="@+id/BtnLinkToLoginScreen"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dip"
-            android:background="@null"
             android:onClick="navigatetoLoginActivity"
-            android:text="Login"
+            android:text="@string/back"
             android:textColor="#228b22"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:background="@drawable/back_button"/>
     </LinearLayout>
 
 </ScrollView>
-
-<!--
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="eus.ehu.dsiweb.ekain.restauranteekain.Registration">
-
-    <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-</RelativeLayout>
-
-
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/LytRegistrationContainer"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
-
-    <TextView android:id="@+id/LblFullName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/full_name" />
-    <EditText android:id="@+id/TxtFullName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="text" />
-
-    <TextView android:id="@+id/LblUserName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/user_name" />
-    <EditText android:id="@+id/TxtUserName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textEmailAddress" />
-
-    <TextView android:id="@+id/LblPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/password" />
-    <EditText android:id="@+id/TxtPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword" />
-
-    <TextView android:id="@+id/LblBirthDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/birth_date" />
-    <EditText android:id="@+id/TxtBirthDate"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="date" />
-
-    <TextView android:id="@+id/LblDocument"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/document" />
-    <EditText android:id="@+id/TxtDocument"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="text" />
-
-    <TextView android:id="@+id/LblPhone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/phone" />
-    <EditText android:id="@+id/TxtPhone"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="phone" />
-
-    <Button android:id="@+id/BtnRegistrationAccept"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/accept" />
-
-</LinearLayout>
--->

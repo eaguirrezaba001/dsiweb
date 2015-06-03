@@ -14,149 +14,17 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/left_drawer"
         android:orientation="vertical"
-        android:layout_width="240dp"
+        android:layout_width="260dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:background="#fff">
 
-        <ScrollView
+        <FrameLayout
+            android:id="@+id/left_panel_frame"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-            <LinearLayout
-                xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/left_drawer_scrollable"
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+            android:layout_height="match_parent" >
+        </FrameLayout>
 
-        <com.facebook.login.widget.LoginButton
-            android:id="@+id/facebook_login_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"/>
-
-<!--
-        <com.twitter.sdk.android.core.identity.TwitterLoginButton
-            android:id="@+id/twitter_login_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp" />
--->
-
-<!--
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/login_with" />
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="match_parent"
-            android:orientation="horizontal"
-            android:layout_height="48dp">
-
-            <ImageButton android:id="@+id/BtnLoginGoogle"
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_marginLeft="12dp"
-                android:layout_marginRight="12dp"
-                android:contentDescription="@string/google"
-                android:src="@drawable/ic_action_gplus" />
-            <ImageButton android:id="@+id/BtnLoginFacebook"
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_marginLeft="12dp"
-                android:layout_marginRight="12dp"
-                android:contentDescription="@string/facebook"
-                android:src="@drawable/ic_action_facebook" />
-            <ImageButton android:id="@+id/BtnLoginTwitter"
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_marginLeft="12dp"
-                android:layout_marginRight="12dp"
-                android:contentDescription="@string/twitter"
-                android:src="@drawable/ic_action_twitter" />
-        </LinearLayout>
--->
-
-        <LinearLayout
-            android:id="@+id/LytLogin"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:orientation="vertical"
-            android:background="@drawable/layout_background">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/login_user_name" />
-            <EditText android:id="@+id/TxtLoginUserName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="text" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/login_user_password" />
-            <EditText android:id="@+id/TxtLoginUserPassword"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPassword" />
-
-            <TextView
-                android:id="@+id/login_error"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:padding="10dip"
-                android:textColor="#e30000"
-                android:textStyle="bold" />
-
-        </LinearLayout>
-
-        <Button android:id="@+id/BtnUserLogin"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="loginUser"
-            android:text="@string/login" />
-
-        <LinearLayout
-            android:id="@+id/LytMoreActions"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:orientation="vertical"
-            android:showDividers="beginning"
-            android:divider="?android:dividerHorizontal"
-            android:dividerPadding="6dp" >
-            <Button android:id="@+id/BtnNewUser"
-                android:text="@string/user_new"
-                android:drawableLeft="@drawable/ic_action_user"
-                android:drawablePadding="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-            <Button android:id="@+id/BtnSettings"
-                android:text="@string/action_settings"
-                android:drawableLeft="@drawable/ic_action_settings"
-                android:drawablePadding="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
-
-
-            </LinearLayout>
-        </ScrollView>
     </LinearLayout>
 
 

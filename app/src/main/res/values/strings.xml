@@ -1,44 +1,85 @@
 <resources>
-    <string name="app_name">RestauranteEkain</string>
-    <string name="title_activity_registration">Nuevo usuario</string>
+    <string name="app_name">ElTenedor - Ekain</string>
 
-    <string name="hello_world">Hola mundo!</string>
     <string name="action_settings">Configuración</string>
-
     <string name="fragment_main">Inicio</string>
     <string name="fragment_config">Configuración</string>
-
-
     <string name="drawer_open">Menú Abierto</string>
     <string name="drawer_close">Menú Cerrado</string>
-
-    <string name="full_name">Nombre y apellidos</string>
-    <string name="user_name">Correo electrónico (usuario)</string>
-    <string name="password">Contraseña</string>
-    <string name="birth_date">Fecha de nacimiento</string>
-    <string name="document">DNI</string>
-    <string name="name">Nombre</string>
-    <string name="date">Fecha</string>
-    <string name="phone">Teléfono</string>
-    <string name="email">Email</string>
-
     <string name="accept">Aceptar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="back">Volver</string>
+    <string name="remove">Borrar</string>
+    <string name="update">Actualizar</string>
+    <string name="save">Guardar</string>
+    <string name="yes">Si</string>
+    <string name="no">No</string>
+    <string name="date">Fecha</string>
+    <string name="loading">Cargando...</string>
+    <string name="exit_yes_no">Seguro que quiere salir?</string>
 
-    <string name="facebook_app_id">723299824459167</string>
-
+    <!-- AUTORIZACION Y AUTENTICACION -->
     <string name="login_with">Iniciar sesión con</string>
     <string name="facebook">Facebook</string>
     <string name="twitter">Twitter</string>
     <string name="google">Google</string>
-
     <string name="login_user_name">Usuario</string>
     <string name="login_user_password">Contraseña</string>
     <string name="login">Iniciar sesión</string>
     <string name="logout">Cerrar sesión</string>
-    <string name="user_new">Nuevo usuario</string>
+    <string name="user_new">Crear una cuenta</string>
+    <string name="user_logout_done">¡Sesión finalizada!</string>
 
+    <!-- USUARIOS -->
+    <string name="title_activity_registration">Nuevo usuario</string>
+    <string name="user_full_name">Nombre y apellidos</string>
+    <string name="user_login">Nombre de usuario</string>
+    <string name="user_password">Contraseña</string>
+    <string name="user_password_repeat">Repetir la contraseña</string>
+    <string name="user_birth_date">Fecha de nacimiento</string>
+    <string name="user_document">DNI</string>
+    <string name="user_phone">Teléfono</string>
+    <string name="user_email">Correo electrónico</string>
+    <string name="user_credit">Crédito de</string>
+    <string name="user_successful_registration">¡Registro completado!</string>
+    <string name="user_successful_login">¡Sesión iniciada!</string>
 
+    <!-- RSTAURANTES -->
     <string name="restaurants">Restaurantes</string>
+    <string name="restaurant">Restaurante</string>
+    <string name="restaurant_select">Seleccione un restaurante</string>
+    <string name="restaurant_detail_info">Información detallada</string>
 
+    <!-- RESERVAS -->
+    <string name="title_activity_reservation_list">Lista de reservas</string>
+    <string name="title_activity_reservation">Reserva</string>
+    <string name="reservation_new">Nueva reserva</string>
+    <string name="reservation_do">Reservar</string>
+    <string name="reservation_selected_restaurant">Restaurante seleccionado</string>
+    <string name="reservation_date">Fecha de la reserva</string>
+    <string name="reservation_hour">Hora de la reserva</string>
+    <string name="reservation_person_count">Número de personas</string>
+    <string name="reservation_list_user">Mis reservas</string>
+    <string name="reservation_table_for">Mesa para</string>
+    <string name="reservation_list_empty">De momento no tienes ninguna reserva</string>
+    <string name="reservation_price">El precio de la reserva es de 10 unidades y dispones de</string>
+    <string name="reservation_created_successful">Reserva creada correctamente</string>
+    <string name="reservation_cancel_question">Cancelar la reserva?</string>
+    <string name="reservation_canceled">¡Reserva cancelada!</string>
+
+    <!-- ERRORES -->
+    <string name="error_response_invalid">Ha ocurrido un error[Server\'s JSON response might be invalid]!</string>
+    <string name="error_request_not_found">Recurso pedido no encontrado</string>
+    <string name="error_server_end">Algo va mal en el servidor</string>
+    <string name="error_server_down">¡Error inesperado! [Most common Error: Device might not be connected to Internet or remote server is not up and running]</string>
+
+    <string name="error_registration_password_incorrect">La contraseña no coincide</string>
+    <string name="error_registration_enter_valid_email">Por favor, introduzca una email válido</string>
+    <string name="error_registration_complete_all_field">Por favor, rellene el formulario, sin dejar ningún campo en blanco</string>
+    <string name="error_reservation_user_credit">No se ha podido obtener el crédito disponible de usuario</string>
+    <string name="error_reservation_when_cancel">Ha ocurrido un error al cancelar la reserva.</string>
+
+    <string name="error_login_field_blank">Por favor, rellene el formulario, sin dejar ningún campo en blanco</string>
+    <string name="error_login_incorrect">Email o contraseña incorretos</string>
 
 </resources>
