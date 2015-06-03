@@ -12,6 +12,7 @@ public class DBReservation {
 	private Integer status;
 	private Date creationDate;
 	private Integer personCount;
+	private DBRestaurant DBRestaurant;
 	
 	public Integer getId() {
 		return id;
@@ -55,5 +56,12 @@ public class DBReservation {
 	public void setPersonCount(Integer personCount) {
 		this.personCount = personCount;
 	}
+	public DBRestaurant getDBRestaurant() {
+		return DBRestaurant;
+	}
+	public void setDBRestaurant(DBRestaurant dBRestaurant) {
+		DBRestaurant = dBRestaurant;
+	}
+	
 	
 }

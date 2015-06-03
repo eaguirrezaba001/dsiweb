@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -65,6 +66,33 @@ public class DBConnection {
 		return isUserAvailable;
 	}
 	
+	public static Integer getCredit(String user) throws Exception {
+		Connection conn = null;
+		try {
+			conn = DBConnection.createConnection();
+			Statement stmt = conn.createStatement();
+			String query = "SELECT * FROM balance ";
+					query += " WHERE user = " + user;
+			ResultSet rs = stmt.executeQuery(query);
+			if (rs.next()) {
+				Integer amount = rs.getInt("amount");
+				return amount;
+			}
+		} catch (SQLException sqle) {
+			throw sqle;
+		} catch (Exception e) {
+			if (conn != null) {
+				conn.close();
+			}
+			throw e;
+		} finally {
+			if (conn != null) {
+				conn.close();
+			}
+		}
+		return null;
+	}
+	
 	public static DBUser getUserInfo(String username, String password) throws Exception {
 		List<DBUser> list = null;
 		Connection conn = null;
@@ -72,7 +100,7 @@ public class DBConnection {
 			conn = DBConnection.createConnection();
 			
 			Statement stmt = conn.createStatement();
-			String query = "SELECT * FROM user ";
+			String query = "SELECT u.id, u.name, u.login, u.email, b.amount FROM user as u left join balance as b on u.id = b.user";
 				query += " WHERE (login = '" + username + "' OR email = '" + username +"')";
 				query += " AND password=" + "'" + password + "'";
 			ResultSet rs = stmt.executeQuery(query);
@@ -84,6 +112,7 @@ public class DBConnection {
 				user.setName(rs.getString("name"));
 				user.setLogin(rs.getString("login"));
 				user.setEmail(rs.getString("email"));
+				user.setCredit(rs.getInt("amount"));
 				list.add(user);
 			}
 			
@@ -277,6 +306,7 @@ public class DBConnection {
 					query += " WHERE 1=1";
 					query += id!=null ? " AND id = "+id : "";
 					query += user!=null ? " AND user = "+user : "";
+					query += " ORDER BY date desc ";
 			ResultSet rs = stmt.executeQuery(query);
 			
 			list = new LinkedList<DBReservation>();
@@ -366,5 +396,191 @@ public class DBConnection {
 		}
 		return insertStatus;
 	}
+	
+
+	public static boolean cancelReserva(int reservation) throws SQLException, Exception {
+		boolean insertStatus = false;
+		Connection conn = null;
+		try {
+			conn = DBConnection.createConnection();
+			
+			Statement stmt = conn.createStatement();
+			String query = "UPDATE reservation "
+					+ " SET status = 1"
+					+ " WHERE id = " + reservation;
+			
+			int records = stmt.executeUpdate(query);
+			
+			if (records > 0) {
+				insertStatus = true;
+			}
+		} catch (SQLException sqle) {
+			throw sqle;
+		} catch (Exception e) {
+			if (conn != null) {
+				conn.close();
+			}
+			throw e;
+		} finally {
+			if (conn != null) {
+				conn.close();
+			}
+		}
+		return insertStatus;
+	}
+
+	public static boolean insertUserCredit(String login, Integer amount) throws SQLException, Exception {
+		boolean insertStatus = false;
+		Connection conn = null;
+		try {
+			conn = DBConnection.createConnection();
+			
+			Statement stmt = conn.createStatement();
+			String query = "INSERT INTO balance (user, amount)"
+					+ " VALUES ((select id from user where login = '"+login+"'), "+amount+");";
+			
+			int records = stmt.executeUpdate(query);
+			
+			if (records > 0) {
+				insertStatus = true;
+			}
+		} catch (SQLException sqle) {
+			throw sqle;
+		} catch (Exception e) {
+			if (conn != null) {
+				conn.close();
+			}
+			throw e;
+		} finally {
+			if (conn != null) {
+				conn.close();
+			}
+		}
+		return insertStatus;
+	}
+
+	public static Integer obtainAvailableUserBalance(Integer user) throws SQLException, Exception {
+		Connection conn = null;
+		try {
+			conn = DBConnection.createConnection();
+			
+			Statement stmt = conn.createStatement();
+			String query = "SELECT * FROM balance";
+					query += " WHERE user = "+user;
+			ResultSet rs = stmt.executeQuery(query);
+			
+			Integer amount = 0;
+			if(rs.next()){
+				amount = rs.getInt("amount");
+			}
+			return amount;
+			
+		} catch (SQLException sqle) {
+			throw sqle;
+		} catch (Exception e) {
+			if (conn != null) {
+				conn.close();
+			}
+			throw e;
+		} finally {
+			if (conn != null) {
+				conn.close();
+			}
+		}
+	}
+
+	public static Integer obtainAvailableTables(Integer restaurant, Date date, Integer count) throws SQLException, Exception {
+		Connection conn = null;
+		try {
+			conn = DBConnection.createConnection();
+			
+			Calendar start = Calendar.getInstance();
+			start.setTime(date);
+			start.set(Calendar.SECOND, 0);
+			Calendar end = Calendar.getInstance();
+			end.setTime(date);
+			end.set(Calendar.SECOND, 59);
+			
+			Statement stmt = conn.createStatement();
+			String query = "SELECT sum(resv.person_count), (rest.table_count)*4 ";
+				query += " FROM restaurant as rest left join reservation as resv ";
+				query += " ON rest.id = resv.restaurant";
+				query += " WHERE restaurant = "+restaurant;
+				query += " AND date between '"+new java.sql.Timestamp(start.getTime().getTime())+"' AND '"+new java.sql.Timestamp(end.getTime().getTime())+"'";
+				
+			ResultSet rs = stmt.executeQuery(query);
+			
+			int reservedPerson = 0;
+			int availablePerson = 0;
+			if(rs.next()){
+				reservedPerson = rs.getInt(1);
+				availablePerson = rs.getInt(2);
+			}
+			return availablePerson-reservedPerson;
+			
+		} catch (SQLException sqle) {
+			throw sqle;
+		} catch (Exception e) {
+			if (conn != null) {
+				conn.close();
+			}
+			throw e;
+		} finally {
+			if (conn != null) {
+				conn.close();
+			}
+		}
+	}
+	
+	public static boolean decreaseUserCredit(Integer user, int amount) throws SQLException, Exception {
+		Connection conn = null;
+		try {
+			conn = DBConnection.createConnection();
+			
+			Statement stmt = conn.createStatement();
+			String query = "UPDATE balance "
+					+ " SET amount = amount - " + amount
+					+ " WHERE user = " + user;
+			
+			return stmt.executeUpdate(query)==1;
+		} catch (SQLException sqle) {
+			throw sqle;
+		} catch (Exception e) {
+			if (conn != null) {
+				conn.close();
+			}
+			throw e;
+		} finally {
+			if (conn != null) {
+				conn.close();
+			}
+		}
+	}
+
+	public static boolean increaseUserCredit(Integer user, int amount) throws SQLException, Exception {
+		Connection conn = null;
+		try {
+			conn = DBConnection.createConnection();
+			
+			Statement stmt = conn.createStatement();
+			String query = "UPDATE balance "
+					+ " SET amount = amount + " + amount
+					+ " WHERE user = " + user;
+			
+			return stmt.executeUpdate(query)==1;
+		} catch (SQLException sqle) {
+			throw sqle;
+		} catch (Exception e) {
+			if (conn != null) {
+				conn.close();
+			}
+			throw e;
+		} finally {
+			if (conn != null) {
+				conn.close();
+			}
+		}
+	}
+
 
 }

@@ -45,6 +45,20 @@ public class User {
 	}
 	
 	@GET 
+	@Path("/getcredit")  
+	@Produces(MediaType.APPLICATION_JSON) 
+	public String getCredit(@QueryParam("user") String user) {
+		String response = "";
+		try {
+			Integer amount = DBConnection.obtainAvailableUserBalance(Integer.parseInt(user));
+			response = Utility.constructJSON(amount);
+		} catch (Exception e) {
+			response = "";
+		}
+		return response;
+	}
+	
+	@GET 
 	@Path("/doregister")  
 	@Produces(MediaType.APPLICATION_JSON) 
 	public String doRegistration(@QueryParam("name") String name,
@@ -56,17 +70,28 @@ public class User {
 		String response = "";
 		RegistrationStatus status = registerUser(name, document, login, password, email, phone);
 		if (status == RegistrationStatus.CREATED) {
+			loadUserBalance(login);
 			response = Utility.constructJSON("register", true);
 		} else if (status == RegistrationStatus.REGISTERED) {
-			response = Utility.constructJSON("register", false, "You are already registered");
+			response = Utility.constructJSON(false, "You are already registered");
 		} else if (status == RegistrationStatus.WRONG_CHARACTER) {
-			response = Utility.constructJSON("register", false, "Special Characters are not allowed in Username and Password");
+			response = Utility.constructJSON(false, "Special Characters are not allowed in Username and Password");
 		} else if (status == RegistrationStatus.ERROR) {
-			response = Utility.constructJSON("register", false, "Error occured");
+			response = Utility.constructJSON(false, "Error occured");
 		}
 		return response;
 	}
 	
+	private void loadUserBalance(String login) {
+		try {
+			DBConnection.insertUserCredit(login, 70);
+		} catch(SQLException sqle){
+			sqle.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 	/**
 	 * @param name
 	 * @param document

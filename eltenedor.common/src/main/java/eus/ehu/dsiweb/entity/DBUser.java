@@ -8,6 +8,7 @@ public class DBUser {
 	private String name;
 	private String login;
 	private String email;
+	private Integer credit;
 	
 	public Integer getId() {
 		return id;
@@ -32,6 +33,12 @@ public class DBUser {
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	public Integer getCredit() {
+		return credit;
+	}
+	public void setCredit(Integer credit) {
+		this.credit = credit;
 	}
 	
 }

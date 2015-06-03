@@ -4,8 +4,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Locale;
 
+import org.apache.commons.codec.binary.Base64;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -31,18 +31,28 @@ public class Utility {
 		return obj.toString();
 	}
 
-	public static String constructJSON(String tag, boolean status, String err_msg) {
+	public static String constructJSON(boolean status, String err_msg) {
 		JSONObject obj = new JSONObject();
 		try {
-			obj.put("tag", tag);
-			obj.put("status", new Boolean(status));
-			obj.put("error_msg", err_msg);
+			obj.put(IEntityConstants.STATUS, new Boolean(status));
+			obj.put(IEntityConstants.ERROR_MSG, err_msg);
+		} catch (JSONException e) {
+			
+		}
+		return obj.toString();
+	}
+
+	public static String constructJSON(Integer amount) {
+		JSONObject obj = new JSONObject();
+		try {
+			obj.put(IEntityConstants.AMOUNT,amount);
 		} catch (JSONException e) {
 			
 		}
 		return obj.toString();
 	}
 	
+
 	public static String constructJSON(DBUser user) {
 		JSONObject obj = new JSONObject();
 		try {
@@ -50,6 +60,7 @@ public class Utility {
 			obj.put(IEntityConstants.NAME, user.getName());
 			obj.put(IEntityConstants.LOGIN, user.getLogin());
 			obj.put(IEntityConstants.EMAIL, user.getEmail());
+			obj.put(IEntityConstants.AMOUNT, user.getCredit());
 		} catch (JSONException e) {
 			
 		}
@@ -66,7 +77,7 @@ public class Utility {
 			obj.put(IEntityConstants.LONGITUDE, restaurant.getLongitude());
 			obj.put(IEntityConstants.LATITUDE, restaurant.getLatitude());
 			String encodedString = org.apache.commons.codec.binary.Base64.encodeBase64String(restaurant.getLogoImage());
-			obj.put(IEntityConstants.LOGO_IMAGE, encodedString);
+			obj.put(IEntityConstants.LOGO_IMAGE, encodedString!=null?encodedString:"");
 		} catch (JSONException e) {
 			
 		}
@@ -79,10 +90,6 @@ public class Utility {
 	}
 	
 	public static String getRestaurantListJSON(List<DBRestaurant> list) {
-//		List<JSONObject> obj = new LinkedList<JSONObject>(); 
-//		for(DBRestaurant rest: list){
-//			obj.add(obtainJSON(rest));
-//		}
 		JSONObject obj = new JSONObject();
 		List<JSONObject> objList = new LinkedList<JSONObject>();
 		try {
@@ -119,12 +126,6 @@ public class Utility {
 	}
 	
 	public static String getReservationListJSON(List<DBReservation> list) {
-//		List<JSONObject> obj = new LinkedList<JSONObject>(); 
-//		for(DBReservation reservation: list){
-//			obj.add(obtainJSON(reservation));
-//		}
-//		return obj.toString();
-		
 		JSONObject obj = new JSONObject();
 		List<JSONObject> objList = new LinkedList<JSONObject>();
 		try {
@@ -176,23 +177,30 @@ public class Utility {
         user.setName(obj.getString(IEntityConstants.NAME));
         user.setLogin(obj.getString(IEntityConstants.LOGIN));
         user.setEmail(obj.getString(IEntityConstants.EMAIL));
+        user.setCredit(obj.getInt(IEntityConstants.AMOUNT));
         return user;
     }
 
-    public static DBRestaurant obtainRestaurant(JSONObject obj) throws JSONException {
-    	DBRestaurant restaurant = new DBRestaurant();
-        restaurant.setId(obj.getInt(IEntityConstants.ID));
-        restaurant.setName(obj.getString(IEntityConstants.NAME));
-        restaurant.setDescription(obj.getString(IEntityConstants.DESCRIPTION));
-        restaurant.setTableCount(obj.getInt(IEntityConstants.TABLE_COUNT));
-        restaurant.setLongitude(obj.getString(IEntityConstants.LONGITUDE));
-        restaurant.setLatitude(obj.getString(IEntityConstants.LATITUDE));
-        restaurant.setLogoImage(obj.get(IEntityConstants.LOGO_IMAGE).toString().getBytes());
-        return restaurant;
-    }
+	public static DBRestaurant obtainRestaurant(JSONObject obj) throws JSONException {
+		DBRestaurant restaurant = new DBRestaurant();
+		restaurant.setId(obj.getInt(IEntityConstants.ID));
+		restaurant.setName(obj.getString(IEntityConstants.NAME));
+		restaurant.setDescription(obj.getString(IEntityConstants.DESCRIPTION));
+		restaurant.setTableCount(obj.getInt(IEntityConstants.TABLE_COUNT));
+		restaurant.setLongitude(obj.getString(IEntityConstants.LONGITUDE));
+		restaurant.setLatitude(obj.getString(IEntityConstants.LATITUDE));
+		String logo = obj.getString(IEntityConstants.LOGO_IMAGE);
+		restaurant.setLogoImage(logo != null ? Base64.decodeBase64(logo) : "".toString().getBytes());
 
-    public static boolean obtainStatus(JSONObject obj) throws JSONException {
+		return restaurant;
+	}
+
+	public static boolean obtainStatus(JSONObject obj) throws JSONException {
         return obj.getBoolean(IEntityConstants.STATUS);
+    }
+	
+	public static String obtainError(JSONObject obj) throws JSONException {
+        return obj.getString(IEntityConstants.ERROR_MSG);
     }
 
     	

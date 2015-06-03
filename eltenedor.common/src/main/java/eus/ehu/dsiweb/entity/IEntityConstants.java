@@ -5,10 +5,6 @@ public interface IEntityConstants {
 	
 	String RESERVATION_LIST = "reservationList";
 	String RESTAURANT_LIST = "restaurantList";
-	
-//	obj.put("tag", tag);
-//	obj.put("status", new Boolean(status));
-//	obj.put("error_msg", err_msg);
 
 	String RESTAURANT = "restaurant";
 	String USER = "user";
@@ -28,5 +24,8 @@ public interface IEntityConstants {
 	String LOGO_IMAGE = "logoImage";
 
 	String STATUS = "status";
+	String AMOUNT = "amount";
+	
+	String ERROR_MSG = "error_msg";
 	
 }
