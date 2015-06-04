@@ -14,6 +14,9 @@ public interface IEntityConstants {
 
 	String LOGIN = "login";
 	String EMAIL = "email";
+	String DOCUMENT = "document";
+	String PASSWORD = "password";
+	String PHONE = "phone";
 
 	String ID = "id";
 	String NAME = "name";

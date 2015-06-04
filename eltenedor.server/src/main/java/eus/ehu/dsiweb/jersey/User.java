@@ -2,15 +2,20 @@ package eus.ehu.dsiweb.jersey;
 
 import java.sql.SQLException;
 
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
+import org.json.JSONObject;
+
 import eus.ehu.dsiweb.DBConnection;
 import eus.ehu.dsiweb.Utility;
 import eus.ehu.dsiweb.entity.DBUser;
+import eus.ehu.dsiweb.entity.IEntityConstants;
 
 //Path: http://localhost/<appln-folder-name>/user
 @Path("/user")
@@ -52,22 +57,24 @@ public class User {
 		return response;
 	}
 	
-	@GET 
+	@PUT 
 	@Path("/doregister")  
-	@Produces(MediaType.APPLICATION_JSON) 
-	public String doRegistration(@QueryParam("name") String name,
-			@QueryParam("document") String document,
-			@QueryParam("login") String login,
-			@QueryParam("password") String password,
-			@QueryParam("email") String email, 
-			@QueryParam("phone") String phone) {
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public String doRegistration(final String input){
 		String response = "";
-		RegistrationStatus status = registerUser(name, document, login, password, email, phone);
+		JSONObject obj = new JSONObject(input);
+		RegistrationStatus status = registerUser(obj.getString(IEntityConstants.NAME), 
+				obj.getString(IEntityConstants.DOCUMENT), 
+				obj.getString(IEntityConstants.LOGIN), 
+				obj.getString(IEntityConstants.PASSWORD), 
+				obj.getString(IEntityConstants.EMAIL), 
+				obj.getString(IEntityConstants.PHONE));
 		if (status == RegistrationStatus.CREATED) {
-			loadUserBalance(login);
+			loadUserBalance(obj.getString(IEntityConstants.LOGIN));
 			response = Utility.constructJSON("register", true);
 		} else if (status == RegistrationStatus.REGISTERED) {
-			response = Utility.constructJSON(false, "You are already registered");
+			response = Utility.constructJSON(false, "Ya estas registrado");
 		} else if (status == RegistrationStatus.WRONG_CHARACTER) {
 			response = Utility.constructJSON(false, "Special Characters are not allowed in Username and Password");
 		} else if (status == RegistrationStatus.ERROR) {

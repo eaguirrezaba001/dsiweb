@@ -9,6 +9,9 @@ public class DBUser {
 	private String login;
 	private String email;
 	private Integer credit;
+	private String document;
+	private String password;
+	private String phone;
 	
 	public Integer getId() {
 		return id;
@@ -39,6 +42,24 @@ public class DBUser {
 	}
 	public void setCredit(Integer credit) {
 		this.credit = credit;
+	}
+	public String getDocument() {
+		return document;
+	}
+	public void setDocument(String document) {
+		this.document = document;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 	
 }

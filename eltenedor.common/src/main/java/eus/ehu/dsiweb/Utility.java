@@ -119,6 +119,22 @@ public class Utility {
 		}
 		return obj;
 	}
+	
+
+	public static JSONObject obtainJSON(DBUser user) {
+		JSONObject obj = new JSONObject();
+		try {
+			obj.put(IEntityConstants.NAME, user.getName());
+			obj.put(IEntityConstants.DOCUMENT, user.getDocument());
+			obj.put(IEntityConstants.LOGIN, user.getLogin());
+			obj.put(IEntityConstants.PASSWORD, user.getPassword());
+			obj.put(IEntityConstants.EMAIL, user.getEmail());
+			obj.put(IEntityConstants.PHONE, user.getPhone());
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return obj;
+	}
 
 	public static String constructJSON(DBReservation res) {
 		JSONObject obj = obtainJSON(res);

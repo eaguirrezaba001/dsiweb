@@ -29,7 +29,9 @@ CREATE TABLE `user` (
   `password` varchar(16) collate latin1_spanish_ci default NULL COMMENT 'Contrasena de acceso',
   `email` varchar(64) collate latin1_spanish_ci default NULL COMMENT 'Email del usuario',
   `phone` varchar(9) collate latin1_spanish_ci default NULL COMMENT 'Telefono movil del usuario',
-  PRIMARY KEY  (`id`)
+  PRIMARY KEY  (`id`),
+  UNIQUE KEY `login_UNIQUE` (`login`),
+  UNIQUE KEY `email_UNIQUE` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci COMMENT='Usuarios';
 
 #
